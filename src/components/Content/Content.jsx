@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react"
-import Coin from "../common/Coin/Coin";
+import React, { useState } from "react"
 import GroupedCoins from "../GroupedCoins/GroupedCoins";
 import { ContentConteiner } from "./Content.styled";
 import { BoxContainer } from "../common/Box/Box.styled";
 import Label from "../common/Label/Label";
-import GroupedButton from "../GroupedButton/GroupedButton";
-import Input from "../common/Input/Input";
 import Form from "../common/Form/Form";
-import Button from "../common/Button/Button";
 
-function miniCoinChangeWithCoins(coins, k) {
+// Função baseada em uma solução encontrada no seguinte link: https://www.enjoyalgorithms.com/blog/minimum-coin-change
+// O autor do artigo/post: Shubham Gautam
+
+function minCoinChange(coins, k) {
     if (k === 0) {
         return [0]; // Retorna um array contendo apenas o número mínimo de moedas
     }
@@ -52,30 +51,17 @@ export default props => {
     const [Inputvalue, setInputValue] = useState(0)
     const [Inputvalue1, setInputValue1] = useState(0)
 
-    var trocoValue = 0
+    var changeValue = 0
+
+    console.log(Math.trunc(((Inputvalue1 - Inputvalue) + 0.001 ) * 100))
     
     if(Math.trunc(((Inputvalue1 - Inputvalue) + 0.001 ) * 100) >= 0) {
-        trocoValue = Math.trunc(((Inputvalue1 - Inputvalue) + 0.001 ) * 100) 
+        changeValue = Math.trunc(((Inputvalue1 - Inputvalue) + 0.001 ) * 100) 
     }
 
-    console.log(trocoValue)
+    const coinsAvailable = [1, 5, 10, 25, 50, 100]
 
-    const coinsAvailable = [5, 10, 25, 50]
-
-    const trocoCoins = miniCoinChangeWithCoins(coinsAvailable, trocoValue)
-
-   
-    // const inc = () => {
-    //     setValue(value + 1);
-    // }
-
-    // const dec = () => {
-
-    //     if(value > 0) {
-    //         setValue(value - 1);
-    //     }
-    // }
-
+    const changeCoins = minCoinChange(coinsAvailable, changeValue)
 
     return (
         <ContentConteiner>
@@ -83,19 +69,14 @@ export default props => {
                 <Label text='Moedas Disponíveis (Centavos)' />
                 <GroupedCoins className= 'available' coins={coinsAvailable} width='750px'/>
             </BoxContainer>
-
             <BoxContainer className="ResultCoinLabel">
-                <Label text='Resultado (Centavos)' />
-                <GroupedCoins className='result' coins={trocoCoins} width='100%'/>
+                <Label text='Troco (Centavos)' />
+                <GroupedCoins className='result' coins={changeCoins} width='100%'/>
             </BoxContainer>
-
             <BoxContainer>
                 <Form value={Inputvalue} setValue={setInputValue} labelText='Valor Total'></Form>
                 <Form value={Inputvalue1} setValue={setInputValue1} labelText='Valor Pago'></Form>
-                {/* <Button signal='Gerar Troco' onClick={gerarTroco}/> */}
             </BoxContainer>
-           
-            
         </ContentConteiner>  
     )
 }
