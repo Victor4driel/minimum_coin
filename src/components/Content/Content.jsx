@@ -60,7 +60,7 @@ export default props => {
 
     console.log(trocoValue)
 
-    const coinsAvailable = [1, 5, 10, 25, 50, 100]
+    const coinsAvailable = [0.05, 10, 25, 50]
 
     const trocoCoins = miniCoinChangeWithCoins(coinsAvailable, trocoValue)
 
@@ -85,7 +85,7 @@ export default props => {
             </BoxContainer>
 
             <BoxContainer className="ResultCoinLabel">
-                <Label text='Resultado' />
+                <Label text='Resultado (Centavos)' />
                 <GroupedCoins className='result' coins={trocoCoins} width='100%'/>
             </BoxContainer>
 
