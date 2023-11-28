@@ -6,4 +6,5 @@ export const BoxContainer = styled.div`
     display:flex;
     align-items: center;
     flex-direction: column;
+    gap:15px;
 `

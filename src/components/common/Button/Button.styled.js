@@ -2,8 +2,8 @@ import styled from "styled-components"
 
 export const Button = styled.button`
   display: inline-block;
-  width: 55px;
-  height: 55px;
+  width: {prop => prop.width};
+  height: {prop => prop.height};
   padding: 8px 18px;
   font-size: 2rem;
   font-weight: bold;
