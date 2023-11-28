@@ -60,7 +60,7 @@ export default props => {
 
     console.log(trocoValue)
 
-    const coinsAvailable = [0.05, 10, 25, 50]
+    const coinsAvailable = [5, 10, 25, 50]
 
     const trocoCoins = miniCoinChangeWithCoins(coinsAvailable, trocoValue)
 
